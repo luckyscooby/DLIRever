@@ -1,2 +1,2 @@
 # DLIRever
-DirectX based keylogger
+DirectX based keylogger (non detectable)
