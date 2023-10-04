@@ -7,7 +7,7 @@ It was first developed in Windows 7, targeting Win 10, and is now tested on Win 
 
 It has a feature to detect which window is in focus and to record keystrokes for that specific process; I call it "ForeFocus" and it is very sensitive regarding focus change (a browser tab, for instance, or an intermediate caller process).
 
-Another important feature is the "OnFlyCommandMode", where there is a trigger for turning it on, and you may access "operator" functions, like translating the logged keystrokes into human-readable characters or hidding or showing the console, for example.
+Another important feature is the "OnFlyCommandMode", where there is a trigger for turning it on, and you may access "operator" functions, like translating the logged keystrokes into human-readable stylized HTML or hidding or showing the console, for example.
 
 If you analyze the Kernel module, you'll see there are some obsolete functions there, like DLL loading methods. This is because, at the time, I intended to extend DLIRever into a full trojan solution to keep my experiments against antivirus engines.
 There was also a bootstrap (also DirectX-based to avoid the classic and heuristically obvious WinMain hidden window) and a telemetry (WinSocks) module being developed in the same solution; however, I decided not to include them here as they were premature.
