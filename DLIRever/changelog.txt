@@ -1,0 +1,73 @@
+PROGRAM STATUS (AS OF 22/MAY/2017):
+	ALPHA; FUNCTIONAL; STABLE (UNDER IMPLEMENTS)
+	DEPLOYABLE: YES; NO FAILURE RECURSION
+	MINIMUM SUPPORTED CLIENT: WINDOWS XP
+	TARGET ARCHITECTURE: X86
+
+HISTORY:
+
+ALPHA 1 [05/MARCH/2017] (COMMITTED)
+	- Device (keyboard) acquisition implemented through DirectInput8 interface (at driver level);
+	- HRESULT checks for DirectInput8 interface;
+	- Blackbox directory setup;
+	- Random name generation for datafile;
+	- Input retrieving using simple control flow and yield threshold on main loop;
+	- Input flushing to datafile using DirectInput8 key definitions;
+	- First commit;
+
+ALPHA 2 [10/MARCH/2017] (COMMITTED)
+	- Implemented event-driven input retrieving. Fixes overlapped and repeated inputs;
+	- Check for lost keyboard input and if positive try to reacquire device;
+	- Count number of lost and flushed inputs;
+	- Implemented fly-command;
+	- Added "EXIT", "NEW DATAFILE" and "CANCEL COMMAND" to on-fly mode;
+	- DirectInput initialization function now also retrieves device information;
+	- Added "REVEAL" to on-fly; plays R2D2.wav;
+
+ALPHA 3 [21/MARCH/2017] (COMMITTED)
+	- DirectInput initialization function no more retrieves device information (useless);
+	- Removed "CANCEL" command since any other non-functional key produces the same effect;
+	- Full stealth; console removed (release only);
+	- Now program will set itself hidden and read-only attributes;
+	- Closing a datastream now sets the file as read-only to help protect data integrity;
+	- Fixed some variable types for better flow and conformance;
+	- Decoder mode implementetion initiated by counting work directory items;
+	- Datafile extension set to .RAW instead of .TXT;
+	- Decoder implemented by recognizing keys and translating them into RAW file renamed to .DAT extension (unstable);
+	- Fixed some output to correctly display file names;
+	- Translation implemented based on DirectInput keyboard codes;
+	- Removed Decoder.h from solution (used only for key codes API reference);
+
+ALPHA 4 [23/MARCH/2017] (COMMITTED)
+	- Fixed some variable types for better flow and conformance;
+	- Program no more changes .RAW or .DAT files attributes;
+	- Refactored program to WINAPI based file management;
+	- Fixed decoder not deleting translated .RAW files; also some files not being translated;
+	- Program now checks for single instance and aborts if necessary;
+	- Persistent log implemented;
+
+ALPHA 5	[28/MARCH/2017]	(COMMITTED AS BETA 1; RENAMED)
+	- Replaced some standard functions with their safe (_s) alternatives (not actually necessary, since we know buffer sizes);
+	- Function _EndRuntime() is now triggered by any exit() function call;
+	- Exiting program now logs lost and detection counts;
+	- Reversed full stealth and implemented CONSOLE onfly command (show/hide console);
+	- Improved logging; program also reports it's version;
+
+ALPHA 6	[15/MAY/2017] (COMMITTED)
+	- Implemented HTML output for decoded data; Output decoded datafile extension chenged to .HTM;
+	- Fixed a bug where the command buffer would not be cleared after its execution; This is a security flaw;
+	- Improved console output by utilizing colors;
+	- Refactored console output methods to use WINAPI functions intead of C++ standards;
+	- Reversed version to ALPHA and removed any "BETA" reference since we are still implementing functionality;
+	- Introduced "ForeFocus"; Event-driven ability to report the active window's titlebar, to improve posterior retrieved data analysis;
+	- ForeFocus now is able to retrieve the module name (full executable path) of the foreground process;
+	- Merged _LogMessage() into _WriteMessage() so the later one is also able to log to file via flag switch;
+	- Improved logging; program reports same as console output (except ForeFocus);
+	- Defined minimum supported client as Windows XP through _WIN32_WINNT macro definition;
+
+ALPHA 7
+	- Project was moved into "Tensor" solution. We are beginning to turn DLIRever into a DLL module for a main program (Operator);
+	- Changed configuration type to DLL;
+	- Changed entry point function from wmain() to _InitModule();
+	- Improved _VerifyDirectInputCallResult() checks to report error codes (in case of any) using GetLastError() instead of limited checks;
+	- Changed platform toolset to Windows XP compatibility;

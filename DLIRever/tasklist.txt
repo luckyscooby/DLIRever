@@ -1,0 +1,52 @@
+[FOR INTERNAL CONTROL ONLY]
+
+LEVEL 1	[POLISHMENT]	- Improves functionality.
+LEVEL 2 [REQUIREMENT]	- Adds functionality.
+LEVEL 3 [CRITICAL]		- Affects functionality.
+
+	POLISHMENT
+[x]	Full stealth mode: Program must not show traces of initialization, currently the console window is presented right before getting hidden.
+	Possible solution: Set the project to Win32 only instead of Win32 Console Application and pass the desktop window handle to DI8 interface.
+
+	POLISHMENT	[WORKING][PARTIAL]
+[ ]	Window focus: Program could be able to log which window has focus on desktop and detect/log when it changes.
+	Possible solution: Use GetForegroundWindow function in the main loop at intervals to retrieve info on foreground focus.
+
+	POLISHMENT
+[x]	HTML output: The text type decoded data files are messy and very confusing upon human reading.
+	Possible solution: Implement HTML output using CSS inline styles.
+
+	POLISHMENT
+[x]	Single instance: There is absolutely no need for more than one runtime in the same environment. Program should check for an existing instance and end itself if so.
+
+	POLISHMENT
+[ ]	Better single instance check: Any other program creating the same mutex the module uses is able to block its execution.
+	Possible solution: Implement a more robust check.
+
+	REQUIREMENT
+[x]	Decoder mode: We need a function to decode our raw data, accordingly to dinput.h (hardware scan codes) definitions. It should generate an output data file. This mode is only avaiable through fly command and will translate all files in work directory, including the active one which will be closed. All raw datafiles should be deleted to avoid overhead.
+
+	REQUIREMENT
+[x]	Log file: For the beta development stage we need a log to file system, so we are able to retrieve execution results on specified computers.
+	Possible solution: As we will build the full stealth mode we must divert all logs and screen outputs to a file including a more detailed and organized initialization and execution feedback.
+
+	REQUIREMENT
+[x]	Command insertion on the fly: As the program has no interface or direct input controls we must implement a passive command recognition system. The program must passively listen to indirect inputs.
+	Possible solution: Use a specific key (Insert) to trigger the command mode, read each input, recognize and execute after a 2nd [Insert] press. We could use a buffer array and then compare it to the avaiable commands.
+
+	CRITICAL
+[x]	YIELD_TRESHOLD regulation is faulty and we still are losing key strokes.
+	Temporary solution: Creating a comparison between the last and current inputs discarding repeated ones should amenize the issue, but it would raise another condition: if user repeatedly presses a key it might also get lost.
+	A definite solution would be developing an event driven scenario (triggers) on top of DirectInput data.
+
+	CRITICAL
+[x] Checks for device acquirement state: If we lose our device to another application our program still does not know how to handle this and all consequent inputs will be lost until program restart.
+	Possible solution: Insert a check in the main loop and try to reacquire if lost.
+
+	CRITICAL
+[x]	Decoder is not being able to delete .RAW files after translation; also some files are not being translated, resulting in empty .DAT files.
+	Possible solution: Use WINAPI to implement a more robust file management.
+
+	CRITICAL
+[ ]	Decoder is misintepreting some keys like symbols and accents, we still are able to get the correct scan codes, but translation outputs imprecise results.
+	Possible solution: Different clients have distinct keyboard types (key number and map), program must be able to select a proper translation template according to hardware at runtime. Maybe DirectX has this ability.
