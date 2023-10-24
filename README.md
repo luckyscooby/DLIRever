@@ -3,6 +3,8 @@ Michael Leocádio @ 2017
 
 [![C++](https://img.shields.io/static/v1?label=&message=C%2B%2B&color=%231E40AF&logo=C%2B%2B)](https://)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/nog6ny95cfn2e8g1?svg=true)](https://ci.appveyor.com/project/luckyscooby/dlirever)
+
 [![Status - Archived](https://img.shields.io/badge/Status-Archived-yellow)](https://)
 
 Non detectable DirectX based keylogger (proof of concept)
