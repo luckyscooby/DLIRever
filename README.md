@@ -5,7 +5,7 @@ Michael Leocádio @ 2017
 
 [![Status - Archived](https://img.shields.io/badge/Status-Archived-yellow)](https://)
 
-DirectX-based keylogger (non-detectable)
+Non detectable DirectX based keylogger (proof of concept)
 
 This is just a proof of concept that a virus (keylogger class) can use DirectX's DirectInput in order to capture user input without being detected by antivirus engines (and it interestingly still works in 2023, 6 years later).
 It was first developed in Windows 7, targeting Win 10, and is now tested on Win 11 (build 22621.2361).
